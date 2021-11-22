@@ -1,11 +1,14 @@
 import express from 'express'
+import config  from './utils/config'
+
+
 
 const app = express()
 
-const port = 3000
+const { port } = config
 
-app.get('/', (req,res) =>{
+app.get('/', (req, res) => {
 res.send({msg:'Hello Everyone in the world!'})    
 })
 
-app.listen(port)
+app.listen(config.port)
