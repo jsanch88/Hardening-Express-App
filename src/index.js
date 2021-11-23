@@ -6,6 +6,8 @@ import config  from './utils/config'
 import logger from './utils/logger'
 import errors from './utils/errors'
 
+import router from './routes'
+
 
 const app = express()
 
@@ -17,10 +19,7 @@ app.use(cors({
 })
 )
 
-app.get('/', (req, res) => {
-    logger.log.success('Calling Root')
-res.send({msg:'Hello Everyone in the world!'})    
-})
+app.use(router)
 
 app.use(errors.notFound)
 app.use(errors.errorHandler)
