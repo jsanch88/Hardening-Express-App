@@ -1,6 +1,8 @@
 import dotenv from 'dotenv'
 import joi from 'joi'
 
+import logger from './logger'
+
 dotenv.config()
 
 const evnSchema = joi.object().keys ({
@@ -13,7 +15,7 @@ const evnSchema = joi.object().keys ({
 const { value: env, error } = evnSchema.prefs({errors: { label:'key' } }).validate(process.env)
 
 if (error) {
-    throw new Error('Config validation error: ${error.message}')
-}
+    logger.log.error(new Error(`Config validation error: ${error.message}`))
+  }
 
 export default {nodeENV: env.NODE_ENV, port: env.PORT }
